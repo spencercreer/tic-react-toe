@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Confetti from 'react-dom-confetti';
 import './index.css';
 
 function Square(props) {
@@ -105,6 +106,20 @@ class Game extends React.Component {
             status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
         }
 
+        const config = {
+            angle: "157",
+            spread: 360,
+            startVelocity: 40,
+            elementCount: 150,
+            dragFriction: 0.12,
+            duration: 3000,
+            stagger: 3,
+            width: "10px",
+            height: "10px",
+            perspective: "500px",
+            colors: ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"]
+          };
+
         return (
             <div className="game">
                 <div className="game-board">
@@ -117,6 +132,7 @@ class Game extends React.Component {
                     <div>{status}</div>
                     <ol>{moves}</ol>
                 </div>
+                <Confetti active={winner} config={config} />
             </div>
         );
     }
